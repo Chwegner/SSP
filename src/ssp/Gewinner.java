@@ -6,6 +6,8 @@ package ssp;
  */
 public class Gewinner {
 
+    // Ermittlung des Rundensiegers (1 = Spieler. 2 = Computer) nach Spielregeln. //
+    
     public int GewinnerString(String spielerwahl, String Computer) {
         int sieger = 0;
         if (spielerwahl.equals("Stein") && Computer.equals("Schere")) {
