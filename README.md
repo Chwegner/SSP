@@ -1,4 +1,5 @@
 SSP
+
 Spiel "Stein, Schere, Papier"
 
 1. Der Spieler gibt seinen Namen und die Anzahl der Spielrunden an.
