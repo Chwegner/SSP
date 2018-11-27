@@ -16,7 +16,7 @@ public class SSP
     {
 
         // Start der GUI //
-        SSPGui gui = new SSPGui();
+        Gui2 gui = new Gui2();
 
         // Eingabe Spielername und Rundenanzahl //
         String name = JOptionPane.showInputDialog("Dein Name?");
