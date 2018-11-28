@@ -1,17 +1,16 @@
 package ssp;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -27,9 +26,10 @@ public class Gui2
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+        frame.setLayout(null);
         frame.setResizable(false);
 
-        // Fenster Position Bildschirm-Mitte //
+        // Frame Position Bildschirm-Mitte //
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int w = frame.getSize().width;
         int h = frame.getSize().height;
@@ -39,15 +39,57 @@ public class Gui2
 
         // Panels //
         JPanel panel1 = new JPanel();
+        // panel1.setBackground(Color.red);
+        panel1.setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        panel1.setBorder(new EmptyBorder(10, 10, 10, 20));
+        panel1.setBounds(200, 200, 400, 200);
+        panel1.setVisible(true);
         frame.add(panel1);
 
-        JPanel panel2 = new JPanel();
+        // Border //
+        TitledBorder border = new TitledBorder(" Deine Angaben ");
+        border.setTitleJustification(TitledBorder.LEFT);
+        border.setTitlePosition(TitledBorder.TOP);
+        panel1.setBorder(border);
 
         // Objekte //
         JLabel labelName = new JLabel("Wie ist dein Name?");
-        JTextField nameField = new JTextField("Eingabe");
-        panel1.add(labelName);
-        panel1.add(nameField);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        panel1.add(labelName, constraints);
+
+        JTextField nameField = new JTextField(20);
+        constraints.weighty = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        panel1.add(nameField, constraints);
+        nameField.setSize(nameField.getPreferredSize());
+
+        JLabel labelRunden = new JLabel("Wieviele Runden?");
+        constraints.weighty = 0;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        panel1.add(labelRunden, constraints);
+        labelRunden.setSize(labelRunden.getPreferredSize());
+
+        JTextField roundField = new JTextField(5);
+        constraints.weighty = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        panel1.add(roundField, constraints);
+        nameField.setSize(roundField.getPreferredSize());
+
+        JButton buttonEingabe = new JButton("Bestätigen");
+        constraints.weighty = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        buttonEingabe.setSize(buttonEingabe.getPreferredSize());
+        panel1.add(buttonEingabe, constraints);
+
+        panel1.revalidate();
+        panel1.repaint();
+
     }
 
 }
