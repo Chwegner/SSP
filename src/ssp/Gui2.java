@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class Gui2 extends JFrame
 {
-
+//<editor-fold defaultstate="collapsed" desc="Variablen">
     KI ki = new KI();
     Gewinner sieger = new Gewinner();
     private JFrame frame;
@@ -42,9 +42,10 @@ public class Gui2 extends JFrame
     String spielerwahl;
     String computerwahl;
     int siegerNummer;
-
+    //</editor-fold>
     public Gui2()
     {
+//<editor-fold defaultstate="collapsed" desc="Frames und Panels">
 
         // Erstellung des Frames //
         frame = new JFrame("Stein - Schere - Papier");
@@ -81,7 +82,8 @@ public class Gui2 extends JFrame
         panel2.setVisible(false);
         frame.add(panel2);
 
-        ///////////// Panel 1 Objekte ////////////////////////////
+        //</editor-fold>
+//<editor-fold defaultstate="collapsed" desc="Objekte Panel 1">
         // Border //
         TitledBorder border = new TitledBorder(" Deine Angaben ");
         border.setTitleJustification(TitledBorder.LEFT);
@@ -125,7 +127,8 @@ public class Gui2 extends JFrame
         panel1.revalidate();
         panel1.repaint();
 
-        ///////////////////// Panel 2 Objekte //////////////////
+        //</editor-fold>
+//<editor-fold defaultstate="collapsed" desc="Objekte Panel 2">
         steinButton = new JButton("Stein");
         constraints.gridx = 1;
         constraints.gridy = 1;
@@ -180,6 +183,8 @@ public class Gui2 extends JFrame
 
     }
 
+    //</editor-fold>
+//<editor-fold defaultstate="collapsed" desc="Events">
     class Listener implements ActionListener
     {
 
@@ -342,5 +347,5 @@ public class Gui2 extends JFrame
         }
 
     }
-
+//</editor-fold>    
 }
