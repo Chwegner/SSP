@@ -10,18 +10,22 @@ public class Gui2 extends JFrame
 {
 //<editor-fold defaultstate="collapsed" desc="Variablen">
 
+    // Klassen-Aufrufe //
     KI ki = new KI();
     Gewinner sieger = new Gewinner();
     SaveResults save = new SaveResults();
-    Font font = new Font("Verdana", Font.BOLD, 14);
+    
+    // Bauteile //
+    Font font = new Font("Verdana", Font.BOLD, 12);
     JFrame frame;
     JPanel panel1, panel2, panel3;
     JLabel nameLabel, roundLabel, spielstand, gewinner,
             auswahlAnzeige, punktestand, rundenCounter;
     JTextField nameField, roundField;
     JButton eingabeButton, steinButton, schereButton, papierButton, nextButton;
-
-    int spielerScore, compScore, rundenZahl, RundenZeiger = 1, siegerNummer;
+    
+    // Variablen //
+    int spielerScore, compScore, rundenZahl, siegerNummer, counter = 1;
     String name, runden, spielerwahl, computerwahl;
 
     //</editor-fold>
@@ -171,7 +175,7 @@ public class Gui2 extends JFrame
 
         //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Objekte Panel 3">
-        rundenCounter = new JLabel("Runde: " + RundenZeiger);
+        rundenCounter = new JLabel("Runde: " + counter);
         rundenCounter.setFont(font);
         panel3.add(rundenCounter, c2);
         panel1.revalidate();
@@ -191,7 +195,7 @@ public class Gui2 extends JFrame
             {
                 name = nameField.getText();
                 runden = roundField.getText();
-                rundenZahl = Integer.valueOf(runden);
+                rundenZahl = Integer.parseInt(runden);
                 panel1.setVisible(false);
                 frame.setTitle("Spieler: " + name);
                 panel2.setVisible(true);
@@ -219,8 +223,8 @@ public class Gui2 extends JFrame
 
             if (e.getSource() == nextButton)
             {
-                RundenZeiger++;
-                rundenCounter.setText("Runde: " + RundenZeiger);
+                counter++;
+                rundenCounter.setText("Runde: " + counter);
                 steinButton.setVisible(true);
                 schereButton.setVisible(true);
                 papierButton.setVisible(true);
@@ -236,7 +240,6 @@ public class Gui2 extends JFrame
 
     public void Gewinn()
     {
-
         computerwahl = ki.ComputerWahl();
         auswahlAnzeige.setText("<html><body>" + name + " wählte: " + spielerwahl
                 + "<br>Computer wählte: " + computerwahl
@@ -244,6 +247,9 @@ public class Gui2 extends JFrame
         steinButton.setVisible(false);
         schereButton.setVisible(false);
         papierButton.setVisible(false);
+        
+        // Ermittlung des RundenSiegers und Ausgabe // 
+        
         siegerNummer = sieger.GewinnerString(spielerwahl, computerwahl);
         switch (siegerNummer)
         {
@@ -268,19 +274,12 @@ public class Gui2 extends JFrame
         punktestand.setText("<html><body>Spieler: " + spielerScore
                 + "<br>Computer: " + compScore + "</body></html>");
 
-        // Runden-Schleife //
-        for (int i = 1; i < rundenZahl; i++)
+        // Runden-Schleife und Spielende //
+        if (rundenZahl > counter)
         {
-            rundenZahl--;
-            if (rundenZahl > 0)
-            {
-                nextButton.setVisible(true);
-            }
-
+            nextButton.setVisible(true);
         }
-
-        // Spielende //
-        if (RundenZeiger == Integer.parseInt(runden))
+        else
         {
             // Ausgabe Endergebnis //
             String resultat = sieger.GewinnerAusgabe(spielerScore, compScore);
@@ -289,7 +288,6 @@ public class Gui2 extends JFrame
             // Druck Endergebnis //
             save.Create();
             save.Write(resultat);
-
         }
 
     }
