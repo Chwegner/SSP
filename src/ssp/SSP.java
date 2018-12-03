@@ -1,9 +1,5 @@
 package ssp;
 
-/**
- *
- * @author cwegner
- */
 public class SSP
 {
 
